@@ -1,2 +1,6 @@
-<app-input-text [appMyFormControl]="name"></app-input-text>
+<div class="tools">
+  <app-input-text class="input-field" [appMyFormControl]="name"></app-input-text>
+  <button class="btn" (click)="onChangeValueClick()">set value</button>
+  <input #inputText id="inputText" type="text" />
+</div>
 <div class="result">{{ name.valueChanges | async }}</div>

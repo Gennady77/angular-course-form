@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MY_NG_VALUE_ACCESSOR, MyControlValueAccessor } from "../../../modules/forms/directives/control_value_accessor";
 
 @Component({
@@ -16,7 +16,9 @@ export class InputTextComponent implements OnInit, AfterViewInit, MyControlValue
 
   private onChange = (_: string) => {};
 
-  constructor() { }
+  constructor(
+    private renderer: Renderer2
+  ) { }
 
   ngOnInit(): void {
   }
@@ -29,5 +31,9 @@ export class InputTextComponent implements OnInit, AfterViewInit, MyControlValue
 
   registerOnChange(fn: any) {
     this.onChange = fn;
+  }
+
+  writeValue(val: any) {
+    this.renderer.setProperty(this.inputRef?.nativeElement, 'value', val);
   }
 }

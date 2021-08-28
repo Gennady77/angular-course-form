@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MyFormControl } from "../../forms/models/my-form-control";
 
 @Component({
@@ -7,6 +7,8 @@ import { MyFormControl } from "../../forms/models/my-form-control";
   styleUrls: ['./form-changes-values.component.scss']
 })
 export class FormChangesValuesComponent implements OnInit {
+  @ViewChild('inputText') private inputText: ElementRef | undefined;
+
   name = new MyFormControl();
 
   constructor() { }
@@ -14,4 +16,7 @@ export class FormChangesValuesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChangeValueClick() {
+    this.name.setValue(this.inputText?.nativeElement.value);
+  }
 }

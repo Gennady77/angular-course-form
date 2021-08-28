@@ -31,6 +31,10 @@ export class MyFormControlDirective implements OnChanges{
     dir.valueAccessor?.registerOnChange((newValue: any) => {
       control.setValue(newValue);
     });
+
+    control.registerOnChange((newValue: any) => {
+      dir.valueAccessor?.writeValue(newValue);
+    })
   }
 
 }

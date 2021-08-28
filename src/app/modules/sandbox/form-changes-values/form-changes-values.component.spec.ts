@@ -29,7 +29,7 @@ fdescribe('FormChangesValuesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should insert text value of input into result box', () => {
+  it('should insert text value of input into result box', () => {
     const testText = 'asd';
     const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('app-input-text input');
     const resultElement: HTMLInputElement = fixture.nativeElement.querySelector('.result');
@@ -45,5 +45,20 @@ fdescribe('FormChangesValuesComponent', () => {
 
 
     expect(resultElement.innerText).toEqual(testText);
+  });
+
+  fit('should insert into input the text that was entered into the text field', () => {
+    const testText = 'qwerty';
+    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('app-input-text input');
+    const textField: HTMLInputElement = fixture.nativeElement.querySelector('#inputText');
+    const button: HTMLButtonElement = fixture.nativeElement.querySelector('button.btn');
+
+    textField.value = testText;
+
+    button.click();
+
+    fixture.detectChanges();
+
+    expect(inputElement.value).toEqual(testText);
   });
 });
