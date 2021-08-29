@@ -10,9 +10,14 @@ export class MyFormControl {
     this.valueChanges = new EventEmitter();
   }
 
-  setValue(value: any) {
+  setValue(value: any, options: {
+    emitEvent?: boolean
+  } = {}) {
     this.onChange(value);
-    (this.valueChanges as EventEmitter<any>).emit(value);
+
+    if(options.emitEvent !== false) {
+      (this.valueChanges as EventEmitter<any>).emit(value);
+    }
   }
 
   registerOnChange(fn: Function): void {

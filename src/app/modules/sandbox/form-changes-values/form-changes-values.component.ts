@@ -19,4 +19,10 @@ export class FormChangesValuesComponent implements OnInit {
   onChangeValueClick() {
     this.name.setValue(this.inputText?.nativeElement.value);
   }
+
+  onOnlyTextClick() {
+    this.name.setValue(this.inputText?.nativeElement.value, {
+      emitEvent: false
+    });
+  }
 }
