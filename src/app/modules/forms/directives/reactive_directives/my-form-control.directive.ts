@@ -28,6 +28,8 @@ export class MyFormControlDirective implements OnChanges{
     const control = this.form;
     const dir = this;
 
+    dir.valueAccessor?.writeValue(control.value);
+
     dir.valueAccessor?.registerOnChange((newValue: any) => {
       control.setValue(newValue);
     });

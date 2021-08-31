@@ -4,7 +4,7 @@ import { FormChangesValuesComponent } from './form-changes-values.component';
 import { SharedModule } from "../../../shared/shared.module";
 import { FormsModule } from "../../forms/forms.module";
 
-fdescribe('FormChangesValuesComponent', () => {
+describe('FormChangesValuesComponent', () => {
   let component: FormChangesValuesComponent;
   let fixture: ComponentFixture<FormChangesValuesComponent>;
 
@@ -61,7 +61,7 @@ fdescribe('FormChangesValuesComponent', () => {
     expect(inputElement.value).toEqual(testText);
   });
 
-  fit('should not emit valueChange if pass emitEvent as false', () => {
+  it('should not emit valueChange if pass emitEvent as false', () => {
     const testText = 'qwerty';
     const textField: HTMLInputElement = fixture.nativeElement.querySelector('#inputText');
     const button: HTMLButtonElement = fixture.nativeElement.querySelector('button.btn-only-text');

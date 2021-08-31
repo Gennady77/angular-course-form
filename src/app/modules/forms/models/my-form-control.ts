@@ -3,10 +3,14 @@ import { Observable } from "rxjs";
 
 export class MyFormControl {
   public readonly valueChanges!: Observable<any>;
+  public readonly value: any;
 
   private onChange: Function = () => {}
 
-  constructor() {
+  constructor(
+    formState: any = null
+  ) {
+    this.value = formState;
     this.valueChanges = new EventEmitter();
   }
 
