@@ -9,6 +9,10 @@ export class MyFormControl {
   public readonly value: any;
   public readonly status!: string;
 
+  get disabled(): boolean {
+    return this.status === DISABLED;
+  }
+
   private onChange: Function = () => {}
 
   constructor(
