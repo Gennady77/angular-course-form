@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormChangeStateComponent } from './form-change-state.component';
+import { FormChangeStateComponent, INIT_STATE_VALUE, INIT_STATE_VALUE_DISABLED } from './form-change-state.component';
 import { SharedModule } from "../../../shared/shared.module";
 import { FormsModule } from "../../forms/forms.module";
 
@@ -32,6 +32,13 @@ describe('FormChangeStateComponent', () => {
   it('should set init state value', () => {
     const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('app-input-text.preset-value input');
 
-    expect(inputElement.value).toEqual('init state value')
+    expect(inputElement.value).toEqual(INIT_STATE_VALUE);
+  });
+
+  it('should set init state disabled', () => {
+    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('app-input-text.disabled input');
+
+    expect(inputElement.value).toEqual(INIT_STATE_VALUE_DISABLED);
+    expect(inputElement.disabled).toBeTrue();
   });
 });

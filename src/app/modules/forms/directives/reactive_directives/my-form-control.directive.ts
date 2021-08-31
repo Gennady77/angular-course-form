@@ -7,7 +7,7 @@ import {
   Self,
   SimpleChanges
 } from '@angular/core';
-import { MyFormControl } from "../../models/my-form-control";
+import { DISABLED, MyFormControl } from "../../models/my-form-control";
 import { MY_NG_VALUE_ACCESSOR, MyControlValueAccessor } from "../control_value_accessor";
 
 @Directive({
@@ -37,6 +37,10 @@ export class MyFormControlDirective implements OnChanges{
     control.registerOnChange((newValue: any) => {
       dir.valueAccessor?.writeValue(newValue);
     })
+
+    if(this.valueAccessor?.setDisabledState) {
+      this.valueAccessor?.setDisabledState(control.status === DISABLED);
+    }
   }
 
 }

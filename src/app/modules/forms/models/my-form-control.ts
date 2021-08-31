@@ -1,16 +1,26 @@
 import { EventEmitter } from "@angular/core";
 import { Observable } from "rxjs";
 
+export const DISABLED = 'DISABLED';
+export const VALID = 'VALID';
+
 export class MyFormControl {
   public readonly valueChanges!: Observable<any>;
   public readonly value: any;
+  public readonly status!: string;
 
   private onChange: Function = () => {}
 
   constructor(
     formState: any = null
   ) {
-    this.value = formState;
+    if(this.isBoxedValue(formState)) {
+      this.value = formState.value;
+      this.status = formState.disabled ? DISABLED : VALID;
+    } else {
+      this.value = formState;
+    }
+
     this.valueChanges = new EventEmitter();
   }
 
@@ -26,5 +36,10 @@ export class MyFormControl {
 
   registerOnChange(fn: Function): void {
     this.onChange = fn;
+  }
+
+  isBoxedValue(formState: any): boolean {
+    return typeof formState === 'object' && formState !== null &&
+      Object.keys(formState).length === 2 && 'value' in formState && 'disabled' in formState;
   }
 }

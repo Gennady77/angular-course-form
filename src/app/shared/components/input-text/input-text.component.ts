@@ -15,6 +15,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, MyControlValue
   @ViewChild('inputElement') private inputRef: ElementRef | undefined;
 
   value = '';
+  disabled = false;
 
   private onChange = (_: string) => {};
 
@@ -35,5 +36,9 @@ export class InputTextComponent implements OnInit, AfterViewInit, MyControlValue
 
   writeValue(val: any) {
     this.value = val;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
   }
 }
