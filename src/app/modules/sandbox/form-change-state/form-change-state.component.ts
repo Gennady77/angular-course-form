@@ -19,7 +19,18 @@ export class FormChangeStateComponent implements OnInit {
 
   nameForChange = new MyFormControl('');
 
-  constructor() { }
+  countOfRegisters = new MyFormControl('');
+
+  countOfDisables = 0;
+
+  constructor() {
+    const onDisabled = (isDisabled: boolean) => {
+      isDisabled && this.countOfDisables++;
+    }
+
+    this.countOfRegisters.registerOnDisabledChange(onDisabled);
+    this.countOfRegisters.registerOnDisabledChange(onDisabled);
+  }
 
   ngOnInit(): void {
   }
@@ -30,5 +41,9 @@ export class FormChangeStateComponent implements OnInit {
 
   onEnableClick() {
     this.nameForChange.enable();
+  }
+
+  onCountClick() {
+    this.countOfRegisters.disable();
   }
 }

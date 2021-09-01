@@ -14,7 +14,7 @@ export class MyFormControl {
   }
 
   private onChange: Function = () => {}
-  private onDisabledChange: Function = () => {};
+  private onDisabledChange: Function[] = [];
 
   constructor(
     formState: any = null
@@ -49,16 +49,16 @@ export class MyFormControl {
   }
 
   registerOnDisabledChange(fn: (isDisabled: boolean) => void) {
-    this.onDisabledChange = fn;
+    this.onDisabledChange.push(fn);
   }
 
   disable() {
     (this as {status: string}).status = DISABLED;
-    this.onDisabledChange(true);
+    this.onDisabledChange.forEach(changeFn => changeFn(true));
   }
 
   enable() {
     (this as {status: string}).status = VALID;
-    this.onDisabledChange(false);
+    this.onDisabledChange.forEach(changeFn => changeFn(false));
   }
 }
