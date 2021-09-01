@@ -17,9 +17,18 @@ export class FormChangeStateComponent implements OnInit {
     disabled: true
   });
 
+  nameForChange = new MyFormControl('');
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onDisableClick() {
+    this.nameForChange.disable();
+  }
+
+  onEnableClick() {
+    this.nameForChange.enable();
+  }
 }

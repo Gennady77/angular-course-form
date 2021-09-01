@@ -18,7 +18,7 @@ import { FormChangeStateComponent } from './form-change-state/form-change-state.
   imports: [
     FormsModule,
     CommonModule,
-    SharedModule,
+    SharedModule
   ]
 })
 export class SandboxModule { }

@@ -41,4 +41,31 @@ describe('FormChangeStateComponent', () => {
     expect(inputElement.value).toEqual(INIT_STATE_VALUE_DISABLED);
     expect(inputElement.disabled).toBeTrue();
   });
+
+  it('should disable control', () => {
+    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('app-input-text.change-status input');
+    const buttonElement: HTMLInputElement = fixture.nativeElement.querySelector('button.set-to-disable');
+
+    buttonElement.click();
+
+    fixture.detectChanges();
+
+    expect(inputElement.disabled).toBeTrue();
+  });
+
+  it('should enable control', () => {
+    const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('app-input-text.change-status input');
+    const buttonDisable: HTMLInputElement = fixture.nativeElement.querySelector('button.set-to-disable');
+    const buttonEnable: HTMLInputElement = fixture.nativeElement.querySelector('button.set-to-enable');
+
+    buttonDisable.click();
+    fixture.detectChanges();
+
+    expect(inputElement.disabled).toBeTrue();
+
+    buttonEnable.click();
+    fixture.detectChanges();
+
+    expect(inputElement.disabled).toBeFalse();
+  });
 });

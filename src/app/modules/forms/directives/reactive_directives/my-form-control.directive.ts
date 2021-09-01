@@ -9,18 +9,19 @@ import {
 } from '@angular/core';
 import { MyFormControl } from "../../models/my-form-control";
 import { MY_NG_VALUE_ACCESSOR, MyControlValueAccessor } from "../control_value_accessor";
+import { MyNgControl } from "../ng-control";
+import { setUpDisabledChangeHandler } from "../shared";
 
 @Directive({
   selector: '[appMyFormControl]'
 })
-export class MyFormControlDirective implements OnChanges{
+export class MyFormControlDirective extends MyNgControl implements OnChanges{
   @Input('appMyFormControl') form!: MyFormControl;
-
-  valueAccessor: MyControlValueAccessor|null = null;
 
   constructor(
     @Optional() @Self() @Inject(MY_NG_VALUE_ACCESSOR) private valueAccessors: MyControlValueAccessor[]
   ) {
+    super();
     this.valueAccessor = valueAccessors[0];
   }
 
@@ -37,6 +38,8 @@ export class MyFormControlDirective implements OnChanges{
     control.registerOnChange((newValue: any) => {
       dir.valueAccessor?.writeValue(newValue);
     })
+
+    setUpDisabledChangeHandler(control, dir);
 
     if(this.valueAccessor?.setDisabledState) {
       this.valueAccessor?.setDisabledState(control.disabled);
