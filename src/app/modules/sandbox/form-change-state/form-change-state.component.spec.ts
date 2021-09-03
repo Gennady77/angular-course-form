@@ -77,4 +77,13 @@ describe('FormChangeStateComponent', () => {
 
     expect(component.countOfDisables).toEqual(2);
   });
+
+  fit('should call registerOnChange subscribers twice', () => {
+    const buttonCount: HTMLInputElement = fixture.nativeElement.querySelector('button.count-changes');
+
+    buttonCount.click();
+    fixture.detectChanges();
+
+    expect(component.countOfChanges).toEqual(2);
+  });
 });

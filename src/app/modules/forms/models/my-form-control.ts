@@ -13,7 +13,7 @@ export class MyFormControl {
     return this.status === DISABLED;
   }
 
-  private onChange: Function = () => {}
+  private onChange: Function[] = [];
   private onDisabledChange: Function[] = [];
 
   constructor(
@@ -32,7 +32,10 @@ export class MyFormControl {
   setValue(value: any, options: {
     emitEvent?: boolean
   } = {}) {
-    this.onChange(value);
+    (this as {value: any}).value = value;
+    if(this.onChange.length) {
+      this.onChange.forEach(changeFn => changeFn(this.value));
+    }
 
     if(options.emitEvent !== false) {
       (this.valueChanges as EventEmitter<any>).emit(value);
@@ -40,7 +43,7 @@ export class MyFormControl {
   }
 
   registerOnChange(fn: Function): void {
-    this.onChange = fn;
+    this.onChange.push(fn);
   }
 
   isBoxedValue(formState: any): boolean {

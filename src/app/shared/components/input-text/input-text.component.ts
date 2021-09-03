@@ -21,8 +21,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, MyControlValue
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
     this.inputRef?.nativeElement.addEventListener('input', (event: InputEvent) => {
