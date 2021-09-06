@@ -4,13 +4,15 @@ import { FormChangesValuesComponent } from './form-changes-values/form-changes-v
 import { SharedModule } from "../../shared/shared.module";
 import { FormsModule } from "../forms/forms.module";
 import { FormChangeStateComponent } from './form-change-state/form-change-state.component';
+import { FormValidateComponent } from './form-validate/form-validate.component';
 
 
 
 @NgModule({
   declarations: [
     FormChangesValuesComponent,
-    FormChangeStateComponent
+    FormChangeStateComponent,
+    FormValidateComponent
   ],
   exports: [
     FormChangesValuesComponent

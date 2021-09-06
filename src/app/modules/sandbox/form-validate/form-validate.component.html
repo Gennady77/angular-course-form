@@ -1,0 +1,8 @@
+<app-input-text class="error-input" [appMyFormControl]="name"></app-input-text>
+<div *ngIf="name.invalid" class="alert-error">Control is invalid</div>
+<div *ngIf="name.errors?.name" class="alert-error-name">Name is incorrect</div>
+<br/>
+<br/>
+<app-input-text class="error-digit" [appMyFormControl]="card"></app-input-text>
+<div class="error-message-required" *ngIf="card.errors?.required">{{ card.errors?.required.message }}</div>
+<div class="error-message-digit" *ngIf="card.errors?.digit">{{ card.errors?.digit.message }}</div>
