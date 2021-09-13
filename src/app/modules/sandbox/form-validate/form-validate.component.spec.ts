@@ -63,7 +63,7 @@ describe('FormValidateComponent', () => {
     expect(messageElement).toBeTruthy();
   });
 
-  fit('should set array of validators', () => {
+  it('should set array of validators', () => {
     const inputElement: HTMLInputElement = fixture.nativeElement.querySelector('app-input-text.error-digit input');
 
     inputElement.value = 'asd';
